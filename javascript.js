@@ -13,3 +13,22 @@ function multiply(x, y) {
 function divide(x, y) {
     return x / y;
 }
+
+function operate(operator) {
+    switch (operator) {
+        case "+":
+            add(x, y);
+            break;
+        case "-":
+            subtract(x, y);
+            break;
+        case "*":
+            multiply(x, y);
+            break;
+        case "/":
+            divide(x, y);
+            break;
+        default:
+            console.log("There was an issue within operate().")
+    }
+}
