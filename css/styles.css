@@ -1,0 +1,86 @@
+#calcContainer {
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px;
+    column-gap: 5px;
+    row-gap: 5px;
+    grid-template-areas: 
+    "inputText inputText inputText inputText"
+    "buttonClear buttonClear buttonBackspace buttonBackspace"
+    "button7 button8 button9 buttonDivide"
+    "button4 button5 button6 buttonMultiply"
+    "button1 button2 button3 buttonSubtract"
+    "button0 buttonDecimal buttonEnter buttonAdd";
+}
+
+#inputText {
+    grid-area: inputText;
+    text-align: end;
+}
+
+#buttonClear {
+    grid-area: buttonClear;
+}
+
+#buttonBackspace {
+    grid-area: buttonBackspace;
+}
+
+#button7 {
+    grid-area: button7;
+}
+
+#button8 {
+    grid-area: button8;
+}
+
+#button9 {
+    grid-area: button9;
+}
+
+#buttonDivide {
+    grid-area: buttonDivide;
+}
+
+#button4 {
+    grid-area: button4;
+}
+
+#button5 {
+    grid-area: button5;
+}
+
+#button6 {
+    grid-area: button6;
+}
+
+#buttonMultiply {
+    grid-area: buttonMultiply;
+}
+
+#button1 {
+    grid-area: button1;
+}
+
+#button2 {
+    grid-area: button2;
+}
+
+#button3 {
+    grid-area: button3;
+}
+
+#buttonSubtract {
+    grid-area: buttonSubtract;
+}
+
+#buttonDecimal {
+    grid-area: buttonDecimal;
+}
+
+#buttonEnter {
+    grid-area: buttonEnter;
+}
+
+#buttonAdd {
+    grid-area: buttonAdd;
+}
