@@ -14,15 +14,21 @@ inputButtons.forEach(button => {
 
 // adds text from the button to what's already in the input display
 function updateInputDisplay(e) {
-    inputDisplay.textContent += e.target.textContent;
+    let temp = e.target.textContent;
+
+    if (isOperator(temp)) {
+        inputDisplay.textContent += " " + temp + " ";
+    } else {
+        inputDisplay.textContent += temp;
+    }
+    
 }
 
 // checks if the current string from a button is one of of the operator buttons
-function isOperator(e) {
-    const temp = e.target;
+function isOperator(text) {
     
-    if (operators.includes(temp)) {
-        operator = e.target;
+    if (operators.includes(text)) {
+        operator = text;
         return true;
     } else {
         return false;
