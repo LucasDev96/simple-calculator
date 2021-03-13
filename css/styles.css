@@ -13,7 +13,7 @@ body {
     column-gap: 5px;
     row-gap: 5px;
     grid-template-areas: 
-    "inputText inputText inputText inputText"
+    "inputDisplay inputDisplay inputDisplay inputDisplay"
     "buttonClear buttonClear buttonBackspace buttonBackspace"
     "button7 button8 button9 buttonDivide"
     "button4 button5 button6 buttonMultiply"
@@ -21,8 +21,8 @@ body {
     "button0 buttonDecimal buttonEnter buttonAdd";
 }
 
-#inputText {
-    grid-area: inputText;
+#inputDisplay {
+    grid-area: inputDisplay;
     text-align: end;
 }
 
