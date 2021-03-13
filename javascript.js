@@ -16,9 +16,13 @@ inputButtons.forEach(button => {
 function updateInputDisplay(e) {
     let temp = e.target.textContent;
 
-    if (isOperator(temp)) {
+    if (isOperator(temp) && containsOperator()) {
+        // remove last two characters of the string
+        inputDisplay.textContent = inputDisplay.textContent.slice(0, -2);
+        inputDisplay.textContent += temp + " ";
+    } else if (isOperator(temp)) {
         inputDisplay.textContent += " " + temp + " ";
-    } else {
+    } else if (!isOperator(temp) && !containsOperator) {
         inputDisplay.textContent += temp;
     }
     
@@ -26,26 +30,30 @@ function updateInputDisplay(e) {
 
 // stores the values inside of the inputDisplay text inside of first/secondValue
 function updateValues() {
-    let nums = inputDisplay.textContent.split(" ");
-    let firstNum = nums[0];
-    let secondNum = nums[2];
+    let equation = inputDisplay.textContent.split(" ");
+    let firstNum = equation[0];
+    let mathOp = equation[1];
+    let secondNum = equation[2];
 
-    if (firstNum.length !== 0) {
-        firstValue = firstNum;
-    } else if (secondNum.length !== 0) {
-        firstValue = secondNum;
-    }
+    if (firstNum.length !== 0) firstValue = firstValue;
+    if (mathOp.length !== 0) operator = mathOp;
+    if (secondNum.length !== 0) secondValue = secondNum;
 }
 
 // checks if the current string from a button is one of of the operator buttons
 function isOperator(text) {
     
     if (operators.includes(text)) {
-        operator = text;
         return true;
     } else {
         return false;
     }
+}
+
+// checks if the input display already has an operator in it
+function containsOperator() {
+    const ops = operators.split("");
+    ops.forEach(op, () => (inputDisplay.textContent.includes(op) ? true : false));
 }
 
 function add(x, y) {
