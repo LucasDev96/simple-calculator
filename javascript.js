@@ -56,6 +56,15 @@ function containsOperator() {
     ops.forEach(op, () => (inputDisplay.textContent.includes(op) ? true : false));
 }
 
+// checks if the last input clicked on was an operator
+function rewriteOperatorCheck(text) {
+    text = text.split("");
+    let potentialOperator = text[text.length - 2];
+
+    return (operators.includes(potentialOperator)) ? true : false;
+
+}
+
 function add(x, y) {
     return x + y;
 }
