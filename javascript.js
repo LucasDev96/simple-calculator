@@ -1,3 +1,16 @@
+const inputDisplay = document.querySelector("#inputDisplay");
+const inputButtons = document.querySelectorAll(".inputButton");
+
+// apply click listeners for all of the input buttons
+inputButtons.forEach(button => {
+    button.addEventListener("click", updateInputDisplay);
+});
+
+// adds text from the button to what's already in the input display
+function updateInputDisplay(e) {
+    inputDisplay.textContent += e.target.textContent;
+}
+
 function add(x, y) {
     return x + y;
 }
