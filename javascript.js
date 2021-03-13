@@ -18,13 +18,16 @@ function updateInputDisplay(e) {
 
     if (temp.length === 0 && isOperator(temp)) {
         return;
-    } else if (rewriteOperatorCheck()) {
+    } else if (isOperator(temp) && containsOperator()) {
+        return;
+    } else if (isOperator(temp) && rewriteOperatorCheck()) {
         // remove last two characters of the string
         inputDisplay.textContent = inputDisplay.textContent.slice(0, -2);
         inputDisplay.textContent += temp + " ";
     } else if (isOperator(temp) && !containsOperator()) {
         inputDisplay.textContent += " " + temp + " ";
-    } else if (!isOperator(temp) && !containsOperator) {
+    } 
+    else if (!isOperator(temp)) {
         inputDisplay.textContent += temp;
     }
     
@@ -54,16 +57,21 @@ function isOperator(text) {
 
 // checks if the input display already has an operator in it
 function containsOperator() {
-    const ops = operators.split("");
-    ops.forEach(op, () => (inputDisplay.textContent.includes(op) ? true : false));
+    let ops = operators.split("");
+    ops.forEach(op => {
+         if (inputDisplay.textContent.includes(op)) {
+            return true;
+         }
+    });
+    return false;
 }
 
 // checks if the last input clicked on was an operator
 function rewriteOperatorCheck() {
-    text = inputDisplay.textContent.split("");
+    let text = inputDisplay.textContent.split("");
     let potentialOperator = text[text.length - 2];
 
-    return (operators.includes(potentialOperator)) ? true : false;
+    return isOperator(potentialOperator);
 
 }
 
