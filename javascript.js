@@ -58,12 +58,13 @@ function isOperator(text) {
 // checks if the input display already has an operator in it
 function containsOperator() {
     let ops = operators.split("");
+    let tracker = false;
     ops.forEach(op => {
-         if (inputDisplay.textContent.includes(op)) {
-            return true;
-         }
+        if (inputDisplay.textContent.includes(op)) {
+            tracker = true;
+        }
     });
-    return false;
+    return tracker;
 }
 
 // checks if the last input clicked on was an operator
