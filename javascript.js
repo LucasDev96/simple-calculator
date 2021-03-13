@@ -24,6 +24,19 @@ function updateInputDisplay(e) {
     
 }
 
+// stores the values inside of the inputDisplay text inside of first/secondValue
+function updateValues() {
+    let nums = inputDisplay.textContent.split(" ");
+    let firstNum = nums[0];
+    let secondNum = nums[2];
+
+    if (firstNum.length !== 0) {
+        firstValue = firstNum;
+    } else if (secondNum.length !== 0) {
+        firstValue = secondNum;
+    }
+}
+
 // checks if the current string from a button is one of of the operator buttons
 function isOperator(text) {
     
