@@ -13,12 +13,18 @@ body {
     column-gap: 5px;
     row-gap: 5px;
     grid-template-areas: 
+    "workingAreaDisplay workingAreaDisplay workingAreaDisplay workingAreaDisplay"
     "inputDisplay inputDisplay inputDisplay inputDisplay"
     "buttonClear buttonClear buttonBackspace buttonBackspace"
     "button7 button8 button9 buttonDivide"
     "button4 button5 button6 buttonMultiply"
     "button1 button2 button3 buttonSubtract"
     "button0 buttonDecimal buttonEnter buttonAdd";
+}
+
+#workingAreaDisplay {
+    grid-area: workingAreaDisplay;
+    text-align: end;
 }
 
 #inputDisplay {
