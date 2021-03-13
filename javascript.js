@@ -16,11 +16,13 @@ inputButtons.forEach(button => {
 function updateInputDisplay(e) {
     let temp = e.target.textContent;
 
-    if (rewriteOperatorCheck()) {
+    if (temp.length === 0 && isOperator(temp)) {
+        return;
+    } else if (rewriteOperatorCheck()) {
         // remove last two characters of the string
         inputDisplay.textContent = inputDisplay.textContent.slice(0, -2);
         inputDisplay.textContent += temp + " ";
-    } else if (isOperator(temp)) {
+    } else if (isOperator(temp) && !containsOperator()) {
         inputDisplay.textContent += " " + temp + " ";
     } else if (!isOperator(temp) && !containsOperator) {
         inputDisplay.textContent += temp;
