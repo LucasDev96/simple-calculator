@@ -16,7 +16,7 @@ inputButtons.forEach(button => {
 function updateInputDisplay(e) {
     let temp = e.target.textContent;
 
-    if (isOperator(temp) && containsOperator()) {
+    if (rewriteOperatorCheck()) {
         // remove last two characters of the string
         inputDisplay.textContent = inputDisplay.textContent.slice(0, -2);
         inputDisplay.textContent += temp + " ";
@@ -57,8 +57,8 @@ function containsOperator() {
 }
 
 // checks if the last input clicked on was an operator
-function rewriteOperatorCheck(text) {
-    text = text.split("");
+function rewriteOperatorCheck() {
+    text = inputDisplay.textContent.split("");
     let potentialOperator = text[text.length - 2];
 
     return (operators.includes(potentialOperator)) ? true : false;
