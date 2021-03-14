@@ -29,8 +29,9 @@ function updateInputDisplay(e) {
         // remove last two characters of the string
         inputDisplay.textContent = inputDisplay.textContent.slice(0, -2);
         inputDisplay.textContent += temp + " ";
-    } else if (isOperator(temp) && containsOperator()) {
-        return;
+    } else if (isOperator(temp) && containsOperator() && checkValues()) {
+        startNewOperation();
+        inputDisplay.textContent += " " + temp + " ";
     } else if (isOperator(temp) && !containsOperator()) {
         inputDisplay.textContent += " " + temp + " ";
     } else if (!isOperator(temp)) {
@@ -129,10 +130,21 @@ function operate() {
 // check to make sure appropriate values are present, update variables, execute
 // operate
 function pressEquals() {
-    if (!checkValues) return;
+    if (!checkValues()) return;
 
     updateValues();
 
+    answerDisplay.textContent = operate();
+}
+
+// completes first operation to then begin another for when one single full operation
+// already exists, and a new operator is clicked on
+function startNewOperation() {
+    if (!checkValues()) return;
+
+    updateValues();
+
+    inputDisplay.textContent = operate();
     answerDisplay.textContent = operate();
 }
 
