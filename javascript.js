@@ -23,12 +23,12 @@ function updateInputDisplay(e) {
 
     if (temp.length === 0 && isOperator(temp)) {
         return;
-    } else if (isOperator(temp) && containsOperator()) {
-        return;
     } else if (isOperator(temp) && rewriteOperatorCheck()) {
         // remove last two characters of the string
         inputDisplay.textContent = inputDisplay.textContent.slice(0, -2);
         inputDisplay.textContent += temp + " ";
+    } else if (isOperator(temp) && containsOperator()) {
+        return;
     } else if (isOperator(temp) && !containsOperator()) {
         inputDisplay.textContent += " " + temp + " ";
     } else if (!isOperator(temp)) {
