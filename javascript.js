@@ -59,7 +59,7 @@ function updateValues() {
     let mathOp = equation[1];
     let secondNum = equation[2];
 
-    if (firstNum.length !== 0) firstValue = firstValue;
+    if (firstNum.length !== 0) firstValue = firstNum;
     if (mathOp.length !== 0) operator = mathOp;
     if (secondNum.length !== 0) secondValue = secondNum;
 }
@@ -111,20 +111,16 @@ function divide(x, y) {
     return x / y;
 }
 
-function operate(operator) {
+function operate() {
     switch (operator) {
         case "+":
-            add(x, y);
-            break;
+            return add(firstValue, secondValue);
         case "-":
-            subtract(x, y);
-            break;
+            return subtract(firstValue, secondValue);
         case "*":
-            multiply(x, y);
-            break;
+            return multiply(firstValue, secondValue);
         case "/":
-            divide(x, y);
-            break;
+            return divide(firstValue, secondValue);
         default:
             console.log("There was an issue within operate().")
     }
@@ -137,7 +133,7 @@ function pressEquals() {
 
     updateValues();
 
-    operate();
+    answerDisplay.textContent = operate();
 }
 
 // erases most recently written thing in the input display, checks empitness and spacing
@@ -157,4 +153,5 @@ function clearCalc() {
     secondValue = "";
     operator = "";
     inputDisplay.textContent = "";
+    answerDisplay.textContent = "";
 }
