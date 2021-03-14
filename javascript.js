@@ -1,8 +1,9 @@
-const workingAreaDisplay = document.querySelector("#workingAreaDisplay");
+const answerDisplay = document.querySelector("#answerDisplay");
 const inputDisplay = document.querySelector("#inputDisplay");
 const inputButtons = document.querySelectorAll(".inputButton");
 const backspaceButton = document.querySelector("#buttonBackspace");
 const clearButton = document.querySelector("#buttonClear");
+const equalsButton = document.querySelector("#buttonEnter");
 
 let firstValue = "";
 let secondValue = "";
@@ -14,6 +15,7 @@ inputButtons.forEach(button => {
     button.addEventListener("click", updateInputDisplay);
 });
 
+equalsButton.addEventListener("click", pressEquals);
 backspaceButton.addEventListener("click", backspaceInput);
 clearButton.addEventListener("click", clearCalc);
 
@@ -35,6 +37,19 @@ function updateInputDisplay(e) {
         inputDisplay.textContent += temp;
     }
 
+}
+
+// check if all values are present to commit to doing a full operation
+function checkValues() {
+    let equation = inputDisplay.textContent.split(" ");
+    let firstNum = equation[0];
+    let mathOp = equation[1];
+    let secondNum = equation[2];
+
+    if (firstNum.length !== 0 && mathOp.length !== 0 && secondNum.length !== 0) {
+        return true;
+    }
+    return false;
 }
 
 // stores the values inside of the inputDisplay text inside of first/secondValue
@@ -113,6 +128,16 @@ function operate(operator) {
         default:
             console.log("There was an issue within operate().")
     }
+}
+
+// check to make sure appropriate values are present, update variables, execute
+// operate
+function pressEquals() {
+    if (!checkValues) return;
+
+    updateValues();
+
+    operate();
 }
 
 // erases most recently written thing in the input display, checks empitness and spacing
