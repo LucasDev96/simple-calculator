@@ -1,3 +1,4 @@
+const body = document.body;
 const answerDisplay = document.querySelector("#answerDisplay");
 const inputDisplay = document.querySelector("#inputDisplay");
 const inputButtons = document.querySelectorAll(".inputButton");
@@ -15,13 +16,21 @@ inputButtons.forEach(button => {
     button.addEventListener("click", updateInputDisplay);
 });
 
+body.addEventListener("keydown", keydownEvent);
+
 equalsButton.addEventListener("click", pressEquals);
 backspaceButton.addEventListener("click", backspaceInput);
 clearButton.addEventListener("click", clearCalc);
 
 // adds text from the button to what's already in the input display
 function updateInputDisplay(e) {
-    let temp = e.target.textContent;
+    let temp;
+
+    if (typeof (e) === "string") {
+        temp = e;
+    } else {
+        temp = e.target.textContent;
+    }
 
     if (temp.length === 0 && isOperator(temp)) {
         return;
@@ -40,6 +49,64 @@ function updateInputDisplay(e) {
         inputDisplay.textContent += temp;
     }
 
+}
+
+// give keydown listeners for the page to allow the user to use
+// their keyboard instead of clicking
+function keydownEvent(e) {
+    switch (e.key) {
+        case "1":
+            updateInputDisplay("1");
+            break;
+        case "2":
+            updateInputDisplay("2");
+            break;
+        case "3":
+            updateInputDisplay("3");
+            break;
+        case "4":
+            updateInputDisplay("4");
+            break;
+        case "5":
+            updateInputDisplay("5");
+            break;
+        case "6":
+            updateInputDisplay("6");
+            break;
+        case "7":
+            updateInputDisplay("7");
+            break;
+        case "8":
+            updateInputDisplay("8");
+            break;
+        case "9":
+            updateInputDisplay("9");
+            break;
+        case "0":
+            updateInputDisplay("0");
+            break;
+        case "+":
+            updateInputDisplay("+");
+            break;
+        case "-":
+            updateInputDisplay("-");
+            break;
+        case "*":
+            updateInputDisplay("*");
+            break;
+        case "/":
+            updateInputDisplay("/");
+            break;
+        case "Enter":
+            pressEquals();
+            break;
+        case "c":
+            clearCalc();
+            break;
+        case "Backspace":
+            backspaceInput();
+            break;
+    }
 }
 
 // check if all values are present to commit to doing a full operation
