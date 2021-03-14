@@ -163,10 +163,14 @@ function pressEquals() {
 
     let answer = operate();
 
+    // round if the answer is a decimal
     if (answer % 1 !== 0) {
         answer = Math.round((answer + Number.EPSILON) * 100) / 100
     }
 
+    if (answer === Infinity) {
+        answer = "no";
+    }
     answerDisplay.textContent = answer;
 }
 
@@ -179,6 +183,7 @@ function startNewOperation() {
 
     let answer = operate();
 
+    // round if the answer is a decimal
     if (answer % 1 !== 0) {
         answer = Math.round((answer + Number.EPSILON) * 100) / 100
     }
