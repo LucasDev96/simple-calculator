@@ -130,7 +130,10 @@ function operate() {
 // check to make sure appropriate values are present, update variables, execute
 // operate
 function pressEquals() {
-    if (!checkValues()) return;
+    if (!checkValues()) {
+        answerDisplay.textContent = "Syntax Error"
+        return;
+    } 
 
     updateValues();
 
