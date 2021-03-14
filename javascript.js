@@ -34,6 +34,8 @@ function updateInputDisplay(e) {
         inputDisplay.textContent += " " + temp + " ";
     } else if (isOperator(temp) && !containsOperator()) {
         inputDisplay.textContent += " " + temp + " ";
+    } else if (checkDecimalNotAllowed() && temp === ".") {
+        return;
     } else if (!isOperator(temp)) {
         inputDisplay.textContent += temp;
     }
@@ -50,6 +52,28 @@ function checkValues() {
     if (firstNum.length !== 0 && mathOp.length !== 0 && secondNum.length !== 0) {
         return true;
     }
+    return false;
+}
+
+// check if there's already a decimal where the user is typing, or if
+// the user shouldn't be allowed to type a decimal yet
+function checkDecimalNotAllowed() {
+    let equation = inputDisplay.textContent.split(" ");
+    let firstNum = equation[0];
+    let mathOp = equation[1];
+    let secondNum = equation[2];
+
+    if (mathOp === undefined) mathOp = "";
+    if (secondNum === undefined) secondNum = "";
+
+    if (firstNum.length !== 0 && mathOp.length === 0
+        && secondNum.length === 0 && firstNum.includes(".")) {
+        return true
+    } else if (firstNum.length !== 0 && mathOp.length !== 0
+        && secondNum.length !== 0 && secondNum.includes(".")) {
+        return true;
+    }
+
     return false;
 }
 
@@ -113,17 +137,25 @@ function divide(x, y) {
 }
 
 function operate() {
+    let answer;
+
     switch (operator) {
         case "+":
-            return add(firstValue, secondValue);
+            answer = add(firstValue, secondValue);
         case "-":
-            return subtract(firstValue, secondValue);
+            answer = subtract(firstValue, secondValue);
         case "*":
-            return multiply(firstValue, secondValue);
+            answer = multiply(firstValue, secondValue);
         case "/":
-            return divide(firstValue, secondValue);
+            answer = divide(firstValue, secondValue);
         default:
             console.log("There was an issue within operate().")
+    }
+
+    if (answer % 1 !== 0) {
+        return Math.round((answer + Number.EPSILON) * 100) / 100
+    } else {
+        return answer;
     }
 }
 
@@ -133,7 +165,7 @@ function pressEquals() {
     if (!checkValues()) {
         answerDisplay.textContent = "Syntax Error"
         return;
-    } 
+    }
 
     updateValues();
 
