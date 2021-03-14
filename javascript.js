@@ -1,6 +1,7 @@
 const workingAreaDisplay = document.querySelector("#workingAreaDisplay");
 const inputDisplay = document.querySelector("#inputDisplay");
 const inputButtons = document.querySelectorAll(".inputButton");
+const backspaceButton = document.querySelector("#buttonBackspace");
 const clearButton = document.querySelector("#buttonClear");
 
 let firstValue = "";
@@ -13,6 +14,7 @@ inputButtons.forEach(button => {
     button.addEventListener("click", updateInputDisplay);
 });
 
+backspaceButton.addEventListener("click", backspaceInput);
 clearButton.addEventListener("click", clearCalc);
 
 // adds text from the button to what's already in the input display
@@ -29,8 +31,7 @@ function updateInputDisplay(e) {
         inputDisplay.textContent += temp + " ";
     } else if (isOperator(temp) && !containsOperator()) {
         inputDisplay.textContent += " " + temp + " ";
-    }
-    else if (!isOperator(temp)) {
+    } else if (!isOperator(temp)) {
         inputDisplay.textContent += temp;
     }
 
@@ -111,6 +112,17 @@ function operate(operator) {
             break;
         default:
             console.log("There was an issue within operate().")
+    }
+}
+
+// erases most recently written thing in the input display, checks empitness and spacing
+function backspaceInput() {
+    if (inputDisplay.textContent.length === 0) {
+        return;
+    } else if (rewriteOperatorCheck()) {
+        inputDisplay.textContent = inputDisplay.textContent.slice(0, -3);
+    } else {
+        inputDisplay.textContent = inputDisplay.textContent.slice(0, -1);
     }
 }
 
