@@ -97,7 +97,7 @@ function rewriteOperatorCheck() {
 }
 
 function add(x, y) {
-    return x + y;
+    return +x + +y;
 }
 
 function subtract(x, y) {
