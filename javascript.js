@@ -1,6 +1,7 @@
 const workingAreaDisplay = document.querySelector("#workingAreaDisplay");
 const inputDisplay = document.querySelector("#inputDisplay");
 const inputButtons = document.querySelectorAll(".inputButton");
+const clearButton = document.querySelector("#buttonClear");
 
 let firstValue = "";
 let secondValue = "";
@@ -11,6 +12,8 @@ const operators = "+-*/";
 inputButtons.forEach(button => {
     button.addEventListener("click", updateInputDisplay);
 });
+
+clearButton.addEventListener("click", clearCalc);
 
 // adds text from the button to what's already in the input display
 function updateInputDisplay(e) {
@@ -26,11 +29,11 @@ function updateInputDisplay(e) {
         inputDisplay.textContent += temp + " ";
     } else if (isOperator(temp) && !containsOperator()) {
         inputDisplay.textContent += " " + temp + " ";
-    } 
+    }
     else if (!isOperator(temp)) {
         inputDisplay.textContent += temp;
     }
-    
+
 }
 
 // stores the values inside of the inputDisplay text inside of first/secondValue
@@ -47,7 +50,7 @@ function updateValues() {
 
 // checks if the current string from a button is one of of the operator buttons
 function isOperator(text) {
-    
+
     if (operators.includes(text)) {
         return true;
     } else {
@@ -109,4 +112,12 @@ function operate(operator) {
         default:
             console.log("There was an issue within operate().")
     }
+}
+
+// clear/reset the calculator and all variables to start fresh
+function clearCalc() {
+    firstValue = "";
+    secondValue = "";
+    operator = "";
+    inputDisplay.textContent = "";
 }
