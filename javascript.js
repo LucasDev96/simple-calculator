@@ -137,25 +137,17 @@ function divide(x, y) {
 }
 
 function operate() {
-    let answer;
-
     switch (operator) {
         case "+":
-            answer = add(firstValue, secondValue);
+            return add(firstValue, secondValue);
         case "-":
-            answer = subtract(firstValue, secondValue);
+            return subtract(firstValue, secondValue);
         case "*":
-            answer = multiply(firstValue, secondValue);
+            return multiply(firstValue, secondValue);
         case "/":
-            answer = divide(firstValue, secondValue);
+            return divide(firstValue, secondValue);
         default:
             console.log("There was an issue within operate().")
-    }
-
-    if (answer % 1 !== 0) {
-        return Math.round((answer + Number.EPSILON) * 100) / 100
-    } else {
-        return answer;
     }
 }
 
@@ -169,7 +161,13 @@ function pressEquals() {
 
     updateValues();
 
-    answerDisplay.textContent = operate();
+    let answer = operate();
+
+    if (answer % 1 !== 0) {
+        answer = Math.round((answer + Number.EPSILON) * 100) / 100
+    }
+
+    answerDisplay.textContent = answer;
 }
 
 // completes first operation to then begin another for when one single full operation
@@ -179,8 +177,14 @@ function startNewOperation() {
 
     updateValues();
 
-    inputDisplay.textContent = operate();
-    answerDisplay.textContent = operate();
+    let answer = operate();
+
+    if (answer % 1 !== 0) {
+        answer = Math.round((answer + Number.EPSILON) * 100) / 100
+    }
+
+    inputDisplay.textContent = answer;
+    answerDisplay.textContent = answer;
 }
 
 // erases most recently written thing in the input display, checks empitness and spacing
