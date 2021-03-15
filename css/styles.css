@@ -6,9 +6,6 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-family: 'DotGothic16', sans-serif;
-    color: white;
-    font-size: 28;
 }
 
 #calcContainer {
@@ -39,14 +36,20 @@ button {
     color: white;
 }
 
+p {
+    font-family: 'DotGothic16', sans-serif;
+    color: white;
+    font-size: 30px;
+}
+
 #answerDisplay {
-    height: 40px;
+    height: 80px;
     grid-area: answerDisplay;
     text-align: end;
 }
 
 #inputDisplay {
-    height: 40px;
+    height: 80px;
     grid-area: inputDisplay;
     text-align: end;
 }
