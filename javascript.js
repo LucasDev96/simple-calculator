@@ -38,7 +38,7 @@ function updateInputDisplay(e) {
         return;
     }
 
-    if (temp.length === 0 && isOperator(temp)) {
+    if (inputDisplay.textContent.length === 0 && isOperator(temp)) {
         return;
     } else if (isOperator(temp) && rewriteOperatorCheck()) {
         // remove last two characters of the string
