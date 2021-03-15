@@ -14,12 +14,12 @@ body {
     display: grid;
     background-color: #102027;
     padding: 16px;
+    border: 3px black solid;
     border-radius: 12px;
     column-gap: 5px;
     row-gap: 5px;
     grid-template-areas: 
-    "answerDisplay answerDisplay answerDisplay answerDisplay"
-    "inputDisplay inputDisplay inputDisplay inputDisplay"
+    "pContainer pContainer pContainer pContainer"
     "buttonClear buttonClear buttonBackspace buttonBackspace"
     "button7 button8 button9 buttonDivide"
     "button4 button5 button6 buttonMultiply"
@@ -32,6 +32,7 @@ button {
     border-radius: 8px;
     font-size: 40px;
     font-family: 'DotGothic16', sans-serif;
+    font-weight: 500;
     background-color: #62727b;
     color: white;
 }
@@ -40,18 +41,20 @@ p {
     font-family: 'DotGothic16', sans-serif;
     color: white;
     font-size: 30px;
-}
-
-#answerDisplay {
-    height: 80px;
-    grid-area: answerDisplay;
+    font-weight: 500;
     text-align: end;
 }
 
-#inputDisplay {
-    height: 80px;
-    grid-area: inputDisplay;
-    text-align: end;
+#pContainer {
+    height: 160px;
+    padding: 6px;
+    grid-area: pContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #62727b;
+    border-radius: 8px;
+    
 }
 
 #buttonClear {
