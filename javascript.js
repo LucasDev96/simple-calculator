@@ -32,6 +32,12 @@ function updateInputDisplay(e) {
         temp = e.target.textContent;
     }
 
+    // keep the user from writing numbers/equations of ridiculous length
+    if (inputDisplay.textContent.length >= 20) {
+        alertTooLong();
+        return;
+    }
+
     if (temp.length === 0 && isOperator(temp)) {
         return;
     } else if (isOperator(temp) && rewriteOperatorCheck()) {
@@ -49,6 +55,10 @@ function updateInputDisplay(e) {
         inputDisplay.textContent += temp;
     }
 
+}
+
+function alertTooLong() {
+    alert("Please keep the input 20 characters or less.");
 }
 
 // give keydown listeners for the page to allow the user to use
