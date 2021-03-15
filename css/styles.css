@@ -38,6 +38,10 @@ button {
     outline: none;
 }
 
+button:hover {
+    background-color: #4f5b62;
+}
+
 p {
     font-family: 'DotGothic16', sans-serif;
     color: white;
